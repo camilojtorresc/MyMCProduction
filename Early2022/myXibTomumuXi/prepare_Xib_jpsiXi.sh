@@ -27,7 +27,7 @@ step0_configfile="step0-RAWSIM-${CHANNEL_DECAY}-run_cfg.py"
 step0_resultfile="step0-RAWSIM-${CHANNEL_DECAY}-result.root"
 
 # Download fragment from myGitHub
-curl -s -k https://raw.githubusercontent.com/jmejiagu/MyMCProduction/main/$step0_fragmentfile --retry 3 --create-dirs -o Configuration/GenProduction/python/$step0_fragmentfile
+curl -s -k https://raw.githubusercontent.com/camilojtorresc/MyMCProduction/refs/heads/main/Early2022/$step0_fragmentfile --retry 3 --create-dirs -o Configuration/GenProduction/python/$step0_fragmentfile
 [ -s Configuration/GenProduction/python/$step0_fragmentfile ] || exit $?;
 
 scram b
