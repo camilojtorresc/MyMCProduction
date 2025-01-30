@@ -8,6 +8,8 @@
 
 #all steps from https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=BdToJpsiK0s_Unbiased_TuneCP5_13p6TeV_pythia8-evtgen&page=0&shown=2151940099
 
+export SCRAM_ARCH=el8_amd64_gcc10 # RECAS does not have el8                                                                                                
+#export SCRAM_ARCH=slc7_amd64_gcc10
 
 # ---------------- step0 GEN ----------------
 
