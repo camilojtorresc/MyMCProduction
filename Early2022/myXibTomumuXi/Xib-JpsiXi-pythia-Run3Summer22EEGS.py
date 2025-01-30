@@ -6,12 +6,12 @@
 
 import FWCore.ParameterSet.Config as cms
 from Configuration.Generator.Pythia8CommonSettings_cfi import *
-from Configuration.Generator.MCTunes2017.PythiaCP5Settings_cfi import *
+from Configuration.Generator.MCTunesRun3ECM13p6TeV.PythiaCP5Settings_cfi import *
 from GeneratorInterface.EvtGenInterface.EvtGenSetting_cff import *
 
 
 _generator = cms.EDFilter("Pythia8GeneratorFilter", 
-                         comEnergy = cms.double(13000.0),
+                         comEnergy = cms.double(13600.0), # Collision Energy
                          pythiaHepMCVerbosity = cms.untracked.bool(False),
                          maxEventsToPrint = cms.untracked.int32(0),
                          pythiaPylistVerbosity = cms.untracked.int32(0),
@@ -72,9 +72,9 @@ _generator = cms.EDFilter("Pythia8GeneratorFilter",
         processParameters = cms.vstring(
             "SoftQCD:nonDiffractive = on",
             "5132:m0=5.7970",       ## changing also Xi_b- mass in pythia
-            'PTFilter:filter = on', # this turn on the filter
-            'PTFilter:quarkToFilter = 5', # PDG id of q quark
-            'PTFilter:scaleToFilter = 1.0'),
+            'PTFilter:filter = on', ## this turn on the filter
+            'PTFilter:quarkToFilter = 5', ## PDG id of q quark (generates a b quark)
+            'PTFilter:scaleToFilter = 1.0'), ## minimum pT of my q quark
         parameterSets = cms.vstring(
             'pythia8CommonSettings',
             'pythia8CP5Settings',

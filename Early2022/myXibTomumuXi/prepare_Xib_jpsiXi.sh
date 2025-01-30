@@ -33,7 +33,7 @@ curl -s -k https://raw.githubusercontent.com/camilojtorresc/MyMCProduction/refs/
 scram b
 cd ../..
 
-EVENTS=500
+EVENTS=5000
 
 # Configuration parameters
 # cmsDriver command origin: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/BPH-Run3Summer22EEGS-00112
