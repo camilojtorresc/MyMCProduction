@@ -1,9 +1,3 @@
-#==================================
-# original author:  Camilo Torres |
-#         created:  January 2025  |
-#         <camilo.torres@cern.ch> | 
-#==================================
-
 import FWCore.ParameterSet.Config as cms
 from Configuration.Generator.Pythia8CommonSettings_cfi import *
 from Configuration.Generator.MCTunesRun3ECM13p6TeV.PythiaCP5Settings_cfi import *
