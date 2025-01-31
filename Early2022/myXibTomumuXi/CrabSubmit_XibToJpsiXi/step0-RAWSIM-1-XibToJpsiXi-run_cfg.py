@@ -29,9 +29,10 @@ process.load('GeneratorInterface.Core.genFilterSummary_cff')
 process.load('Configuration.StandardSequences.SimIdeal_cff')
 process.load('Configuration.StandardSequences.EndOfProcess_cff')
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
+process.MessageLogger.cerr.FwkReport.reportEvery = 10000
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(5000),
+    input = cms.untracked.int32(50000),
     output = cms.optional.untracked.allowed(cms.int32,cms.PSet)
 )
 
@@ -70,7 +71,7 @@ process.options = cms.untracked.PSet(
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
-    annotation = cms.untracked.string('Configuration/GenProduction/python/Xib-JpsiXi-pythia-Run3Summer22EEGS.py nevts:5000'),
+    annotation = cms.untracked.string('Configuration/GenProduction/python/Xib-JpsiXi-pythia-Run3Summer22EEGS.py nevts:50000'),
     name = cms.untracked.string('Applications'),
     version = cms.untracked.string('$Revision: 1.19 $')
 )

@@ -41,7 +41,7 @@ config.Data.outputPrimaryDataset = myname
 config.Data.splitting = 'EventBased'
 config.Data.unitsPerJob = nEvents
 config.Data.totalUnits = config.Data.unitsPerJob * NJOBS
-#config.Data.outLFNDirBase = '/store/user/jmejiagu/'
+config.Data.outLFNDirBase = '/store/user/ctorresc/PrivateMC_Xib2022/'
 config.Data.publication = False
 
 config.Site.storageSite = 'T3_CH_CERNBOX'
