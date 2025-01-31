@@ -23,7 +23,7 @@ step0_configfile="step0-RAWSIM-${CHANNEL_DECAY}-run_cfg.py"
 step0_resultfile="step0-RAWSIM-${CHANNEL_DECAY}-result.root"
 
 # Download fragment from myGitHub
-curl -s -k $step0_fragmentfile --retry 3 --create-dirs -o Configuration/GenProduction/python/$step0_fragmentfile
+curl -s -k https://raw.githubusercontent.com/camilojtorresc/MyMCProduction/refs/heads/main/Early2022/myXibTomumuXi/$step0_fragmentfile --retry 3 --create-dirs -o Configuration/GenProduction/python/$step0_fragmentfile
 [ -s Configuration/GenProduction/python/$step0_fragmentfile ] || exit $?;
 
 scram b
@@ -65,8 +65,9 @@ step1_configfile="step1-PREMIXRAW-${CHANNEL_DECAY}-run_cfg.py"
 step1_resultfile="step1-PREMIXRAW-${CHANNEL_DECAY}-result.root"
 
 #cmsdriver origin: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_test/BPH-Run3Summer22EEDRPremix-00130
+#pileup_input: https://gitlab.cern.ch/shjeon/sample_factory/-/blob/master/data/pileups/chain_Run3Summer22EEwmLHEGS-Run3Summer22EENanoAODv12.txt?ref_type=heads
 cmsDriver.py  --python_filename $step1_configfile --eventcontent PREMIXRAW --customise Configuration/DataProcessing/Utils.addMonitoring \
-              --datatier GEN-SIM-RAW --fileout file:$step1_resultfile --pileup_input "dbs:/Neutrino_E-10_gun/Run3Summer21PrePremix-Summer22_124X_mcRun3_2022_realistic_v11-v2/PREMIX" \
+              --datatier GEN-SIM-RAW --fileout file:$step1_resultfile --pileup_input "filelist:chain_Run3Summer22EEwmLHEGS-Run3Summer22EENanoAODv12.txt" \
               --conditions 124X_mcRun3_2022_realistic_postEE_v1 --step DIGI,DATAMIX,L1,DIGI2RAW,HLT:2022v14 --procModifiers premix_stage2,siPixelQualityRawToDigi \
               --geometry DB:Extended --filein file:$step0_resultfile --datamix PreMix --era Run3 --no_exec --mc -n -1
 
