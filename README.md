@@ -3,7 +3,7 @@ This is a public repository with my MC production with the CMSSW.
 
 ## Prepare
 
-Monte Carlo production with the **CMSSW** needs a `prepare` file, e.g. `Early2022/myXibTomumuXi/prepare_Xib_jpsiXiv1.sh`, to create the *cfg* files for the MC production steps. The **cmsDrivers** and CMS realeses for each year and each step needs to be extract from an official MC request, for example for 2022 the *cfg* with the cmsDrivers [Bd MC production 2022](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=BdToJpsiK0s_Unbiased_TuneCP5_13p6TeV_pythia8-evtgen&page=0&shown=2151940099):
+Monte Carlo production with the **CMSSW** needs a `prepare` file, e.g. `Early2022/myXibTomumuXi/prepare_Xib_jpsiXiv1.sh`, to create the *cfg* files for the MC production steps. The **cmsDrivers** and CMS realeses for each year and each step (*for 2022 there are four steps, for different years there are different number of steps*) need to be extract from an official MC request, for example for 2022 the *cfg* with the cmsDrivers [Bd MC production 2022](https://cms-pdmv-prod.web.cern.ch/mcm/requests?dataset_name=BdToJpsiK0s_Unbiased_TuneCP5_13p6TeV_pythia8-evtgen&page=0&shown=2151940099):
 - **step0: GEN**
 cmsDriver command origin: [https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/BPH-Run3Summer22EEGS-00112](https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/BPH-Run3Summer22EEGS-00112)
 - **step1: DIGI**
@@ -44,4 +44,9 @@ cd ../../CrabSubmit_XibToJpsiXi/
 voms-proxy-init -voms cms -valid 192:00
 source /cvmfs/cms.cern.ch/common/crab-setup.sh
 crab submit -c crab-MC-XibToJpsiXi_cfg.py
+```
+
+To check how the submission process proceedsse use:
+```
+crab status -d crab_PrivateMC-2022-1-XibToJpsiXi/crab_PrivateMC-2022-1-XibToJpsiXi-2025-01-31-23-55
 ```
