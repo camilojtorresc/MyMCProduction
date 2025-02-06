@@ -64,11 +64,11 @@ _generator = cms.EDFilter("Pythia8GeneratorFilter",
         pythia8CommonSettingsBlock,
         pythia8CP5SettingsBlock,
         processParameters = cms.vstring(
-            "SoftQCD:nonDiffractive = on",
-            "5132:m0=5.7970",       ## changing also Xi_b- mass in pythia
+            'SoftQCD:nonDiffractive = on',
+            '5132:m0=5.7970',       ## changing also Xi_b- mass in pythia
             'PTFilter:filter = on', ## this turn on the filter
             'PTFilter:quarkToFilter = 5', ## PDG id of q quark (generates a b quark)
-            'PTFilter:scaleToFilter = 1.0'), ## minimum pT of my q quark
+            'PTFilter:scaleToFilter = 2.0'), ## minimum pT of my q quark
         parameterSets = cms.vstring(
             'pythia8CommonSettings',
             'pythia8CP5Settings',
@@ -84,7 +84,16 @@ generator = ExternalGeneratorFilter(_generator)
 # Filters #
 ###########
 
-xibfilter = cms.EDFilter("PythiaFilter", ParticleID = cms.untracked.int32(5132))
+#xibfilter = cms.EDFilter("PythiaFilter", ParticleID = cms.untracked.int32(5132))
+xibfilter = cms.EDFilter("PythiaDauVFilter",
+                         verbose         = cms.untracked.int32(1),
+                         NumberDaughters = cms.untracked.int32(2),
+                         ParticleID      = cms.untracked.int32(5132),
+                         DaughterIDs     = cms.untracked.vint32(443, 3312),
+                         MinPt           = cms.untracked.vdouble(6.0, 0.0),
+                         MinEta          = cms.untracked.vdouble(-9999., -9999.),
+                         MaxEta          = cms.untracked.vdouble( 9999., 9999.)
+    )
 
 psifilter = cms.EDFilter("PythiaDauVFilter",
         verbose         = cms.untracked.int32(0),
