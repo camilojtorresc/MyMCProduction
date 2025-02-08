@@ -64,9 +64,9 @@ _generator = cms.EDFilter("Pythia8GeneratorFilter",
         pythia8CommonSettingsBlock,
         pythia8CP5SettingsBlock,
         processParameters = cms.vstring(
-            #'SoftQCD:nonDiffractive = on',
-            'HardQCD:gg2bbbar    = on ',
-            'HardQCD:qqbar2bbbar = on ',
+            'SoftQCD:nonDiffractive = on',
+            #'HardQCD:gg2bbbar    = on ',
+            #'HardQCD:qqbar2bbbar = on ',
             '5132:m0=5.7970',       ## changing also Xi_b- mass in pythia
             'PTFilter:filter = on', ## this turn on the filter
             'PTFilter:quarkToFilter = 5', ## PDG id of q quark (generates a b quark)
