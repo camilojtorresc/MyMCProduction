@@ -17,8 +17,8 @@ cd CMSSW_12_4_14_patch3/src
 eval `scram runtime -sh`
 
 # Configuration parameters
-CHANNEL_DECAY="1-XibToJpsiXi"
-step0_fragmentfile="Xib-JpsiXi-pythia-Run3Summer22EEGS.py"
+CHANNEL_DECAY="1-XibTomumuXi"
+step0_fragmentfile="Xib-mumuXi-pythia-Run3Summer22EEGS.py"
 step0_configfile="step0-RAWSIM-${CHANNEL_DECAY}-run_cfg.py"
 step0_resultfile="step0-RAWSIM-${CHANNEL_DECAY}-result.root"
 
@@ -29,7 +29,7 @@ curl -s -k https://raw.githubusercontent.com/camilojtorresc/MyMCProduction/refs/
 scram b
 cd ../..
 
-EVENTS=5000
+EVENTS=20000
 
 # Configuration parameters
 # cmsDriver command origin: https://cms-pdmv-prod.web.cern.ch/mcm/public/restapi/requests/get_setup/BPH-Run3Summer22EEGS-00112
