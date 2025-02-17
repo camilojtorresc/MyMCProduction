@@ -41,17 +41,11 @@ _generator = cms.EDFilter("Pythia8GeneratorFilter",
 'Alias      Myanti-Xi_b+   anti-Xi_b+',
 'ChargeConj Myanti-Xi_b+   MyXi_b-',
 '#',
-'Alias       Mypsi      J/psi',
-'ChargeConj  Mypsi      Mypsi',
-'#',
-'Decay Mypsi',
-'1.000  mu+       mu-       PHOTOS VLL;', ## PHOTOS for final state radiation from muons
-'Enddecay',
-'#',
 'Decay MyXi_b-', 
-'1.000     Mypsi  Xi-      PHSP;', ## PHSP (Phase Space model) for conservation laws 
+'1.000     Xi-   mu+     mu-  PHOTOS  PHSP;', ## PHSP (Phase Space model) for conservation laws 
 'Enddecay',
 'CDecay Myanti-Xi_b+',
+'#',
 'End'
 ), 
             list_forced_decays = cms.vstring('MyXi_b-','Myanti-Xi_b+'),
@@ -68,6 +62,7 @@ _generator = cms.EDFilter("Pythia8GeneratorFilter",
             #'HardQCD:gg2bbbar    = on ',
             #'HardQCD:qqbar2bbbar = on ',
             '5132:m0=5.7970',       ## changing also Xi_b- mass in pythia
+            #'443:onMode = off',     ## Turn off J/psi decays
             'PTFilter:filter = on', ## this turn on the filter
             'PTFilter:quarkToFilter = 5', ## PDG id of q quark (generates a b quark)
             'PTFilter:scaleToFilter = 2.0'), ## minimum pT of my q quark
@@ -86,29 +81,22 @@ generator = ExternalGeneratorFilter(_generator)
 # Filters #
 ###########
 
-#xibfilter = cms.EDFilter("PythiaFilter", ParticleID = cms.untracked.int32(5132))
-xibfilter = cms.EDFilter("PythiaDauVFilter",
-                         verbose         = cms.untracked.int32(1),
-                         NumberDaughters = cms.untracked.int32(2),
-                         ParticleID      = cms.untracked.int32(5132),
-                         DaughterIDs     = cms.untracked.vint32(13, -13, 3312),
-                         MinPt           = cms.untracked.vdouble(3.0, 3.0, 0.0),
-                         MinEta          = cms.untracked.vdouble(-2.6, -2.6, -9999.),
-                         MaxEta          = cms.untracked.vdouble( 2.6, 2.6, 9999.)
+xibfilter = cms.EDFilter(
+    "PythiaFilter", 
+    MaxEta = cms.untracked.double(9999.),
+    MinEta = cms.untracked.double(-9999.),
+    ParticleID = cms.untracked.int32(5132) ## Xib
     )
 
-'''
-psifilter = cms.EDFilter("PythiaDauVFilter",
-        verbose         = cms.untracked.int32(0),
-        NumberDaughters = cms.untracked.int32(2),
-        MotherID        = cms.untracked.int32(5132),
-        ParticleID      = cms.untracked.int32(443),
-        DaughterIDs     = cms.untracked.vint32(13, -13),
-        MinPt           = cms.untracked.vdouble(3., 3.),
-        MinEta          = cms.untracked.vdouble(-2.6, -2.6),
-        MaxEta          = cms.untracked.vdouble(2.6, 2.6)
-)
-'''
+decayfilter = cms.EDFilter(
+    "PythiaDauVFilter",
+    verbose         = cms.untracked.int32(1), 
+    NumberDaughters = cms.untracked.int32(3), 
+    ParticleID      = cms.untracked.int32(5132),  ## Xib
+    DaughterIDs     = cms.untracked.vint32(3312, -13, 13), ## Xi, mu+, mu-
+    MinPt           = cms.untracked.vdouble(0.5, 3.5, 3.5),  
+    MinEta          = cms.untracked.vdouble(-9999., -2.6, -2.6), 
+    MaxEta          = cms.untracked.vdouble( 9999.,  2.6,  2.6)
+    )
 
-#ProductionFilterSequence = cms.Sequence(generator*xibfilter*psifilter)
-ProductionFilterSequence = cms.Sequence(generator*xibfilter)
+ProductionFilterSequence = cms.Sequence(generator*xibfilter*decayfilter)
